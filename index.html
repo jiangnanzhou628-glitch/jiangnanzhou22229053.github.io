@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Anytime Gym | Fitness Anytime, Anywhere</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles & Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header & Navigation */
+        #header {
+            background-color: #0a0a0a;
+            color: #fff;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .logo span {
+            color: #ff6600; /* Accent color */
+        }
+        .navigation ul {
+            display: flex;
+            list-style: none;
+        }
+        .navigation li {
+            margin-left: 2rem;
+        }
+        .navigation a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+        .navigation a:hover {
+            color: #ff6600;
+        }
+
+        /* Banner / Hero Section */
+        #banner {
+            background: linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.7)),
+                        url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+        .banner-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .banner-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        .button {
+            display: inline-block;
+            background-color: #ff6600;
+            color: white;
+            padding: 12px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        .button:hover {
+            background-color: #e55a00;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3);
+        }
+
+        /* Main Content Sections */
+        #body {
+            padding: 80px 0;
+        }
+        .section {
+            margin-bottom: 60px;
+        }
+        .section-title {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #222;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: #ff6600;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Services / Features Grid */
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .service {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        .service:hover {
+            transform: translateY(-10px);
+        }
+        .service img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            border-radius: 8px 8px 0 0; /* Rounded top corners [citation:3] */
+        }
+        .service-content {
+            padding: 25px;
+        }
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        /* About Section */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .about-content p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        /* Team Section */
+        .team {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        .team-member img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 5px solid #f0f0f0;
+        }
+        .team-member h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        .team-member p {
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Footer */
+        #footer {
+            background-color: #0a0a0a;
+            color: #aaa;
+            padding: 60px 0 30px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-section h3 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ff6600;
+            display: inline-block;
+        }
+        .footer-section ul {
+            list-style: none;
+        }
+        .footer-section li {
+            margin-bottom: 12px;
+        }
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-section a:hover {
+            color: #ff6600;
+        }
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #222;
+            color: white;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            transition: background-color 0.3s;
+        }
+        .social-icons a:hover {
+            background-color: #ff6600;
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .navigation ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            .navigation li {
+                margin: 0 10px;
+            }
+            .banner-content h2 {
+                font-size: 2.2rem;
+            }
+            .about {
+                grid-template-columns: 1fr;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .navigation ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            .navigation li {
+                margin: 8px 0;
+            }
+            .banner-content h2 {
+                font-size: 1.8rem;
+            }
+            .services, .team {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div id="header">
+        <div class="container header-container">
+            <div class="logo">
+                <h1>ANYTIME<span>GYM</span></h1>
+            </div>
+            <nav class="navigation">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#team">Trainers</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Banner / Hero -->
+    <div id="banner" id="home">
+        <div class="container banner-content">
+            <h2>FITNESS ON YOUR SCHEDULE</h2>
+            <p>Welcome to Anytime Gym, where fitness meets flexibility. We're open 24/7 to support your fitness journey, whether you're an early riser or a night owl. Our community and expert coaches are here to help you succeed[citation:2][citation:5].</p>
+            <a href="#contact" class="button">START YOUR FREE TRIAL</a>
+        </div>
+    </div>
+
+    <!-- Main Body -->
+    <div id="body">
+        <div class="container">
+            <!-- About Section -->
+            <section class="section" id="about">
+                <h2 class="section-title">Why Anytime Gym?</h2>
+                <div class="about">
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Modern Gym Interior">
+                    </div>
+                    <div class="about-content">
+                        <p>Anytime Gym was founded on a simple principle: getting fit should work with your life, not against it. Unlike other gyms, we focus on a holistic approach that supports you inside the gym and out[citation:2].</p>
+                        <p>We offer a welcoming, judgment-free zone equipped with modern cardio and strength machines from leading brands[citation:9]. Our secure, keycard-access system allows you to work out whenever it suits you.</p>
+                        <p>With our dedicated mobile app, you can track workouts, connect with your coach, and check how busy the gym is in real-time[citation:5].</p>
+                        <a href="#services" class="button">Explore Our Facilities</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <section class="section" id="services">
+                <h2 class="section-title">Our Facilities & Services</h2>
+                <div class="services">
+                    <article class="service">
+                        <img src="https://images.unsplash.com/photo-1534367507877-0edd93bd013b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Strength Training Area">
+                        <div class="service-content">
+                            <h3>Strength & Conditioning</h3>
+                            <p>Our gym is stocked with a full range of free weights, squat racks, benches, and plate-loaded machines from top manufacturers like Life Fitness and Precor to build strength safely and effectively[citation:9].</p>
+                        </div>
+                    </article>
+                    <article class="service">
+                        <img src="https://images.unsplash.com/photo-1549060279-7e168fce7090?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Cardio Machines">
+                        <div class="service-content">
+                            <h3>Cardio Zone</h3>
+                            <p>Burn calories and improve your endurance with our array of treadmills, ellipticals, stair climbers, and rowing machines, all equipped with entertainment consoles to make your workout fly by.</p>
+                        </div>
+                    </article>
+                    <article class="service">
+                        <img src="https://images.unsplash.com/photo-1576678927484-cc9079570c0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1467&q=80" alt="Personal Training Session">
+                        <div class="service-content">
+                            <h3>Personal Training</h3>
+                            <p>Get personalized guidance from our certified coaches. Whether your goal is weight loss, muscle gain, or improved athletic performance, we create a plan tailored just for you[citation:5].</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Team Section -->
+            <section class="section" id="team">
+                <h2 class="section-title">Meet Our Coaches</h2>
+                <div class="team">
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Alex Johnson - Head Coach">
+                        <h4>Alex Johnson</h4>
+                        <p>Head Coach & Strength Specialist</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80" alt="Maria Garcia">
+                        <h4>Maria Garcia</h4>
+                        <p>Nutrition & Conditioning Coach</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1598974357801-cbca100e5d10?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80" alt="David Chen">
+                        <h4>David Chen</h4>
+                        <p>Functional Fitness Coach</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Sarah Williams">
+                        <h4>Sarah Williams</h4>
+                        <p>Yoga & Mobility Instructor</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ANYTIME GYM</h3>
+                    <p>Your local 24/7 fitness destination. We provide the equipment, community, and coaching to help you reach your goals, on your schedule[citation:2].</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Membership Plans</a></li>
+                        <li><a href="#team">Personal Training</a></li>
+                        <li><a href="#contact">Contact & Hours</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Fitness Street, Health City</li>
+                        <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@anytimegym.example.com</li>
+                        <li><i class="fas fa-clock"></i> Open 24 Hours / 7 Days a Week</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Anytime Gym. A part of the global fitness community. This site is for educational purposes based on a template from freewebsitetemplates.com.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
